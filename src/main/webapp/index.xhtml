@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <title>Tasks List</title>
+    </h:head>
+    <h:body>    
+        <h:form>
+            <h:dataTable value="#{tasks.tasksList}" var="o"
+                         id="taskTable"
+                         styleClass="task-table"
+                         headerClass="task-table-header"
+                         rowClasses="task-table-odd-row,task-table-even-row">
+
+                <h:column>
+                    <f:facet name="header">Completed</f:facet>
+                    <h:selectBooleanCheckbox value="#{o.completed}" disabled="#{not o.editable}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:inputText value="#{o.name}" size="10" rendered="#{o.editable}" />
+                    <h:outputText value="#{o.name}" rendered="#{not o.editable}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header"></f:facet>
+                    <h:commandButton value="Edit" action="#{tasks.editAction(o)}"  rendered="#{not o.editable}">
+                        <f:ajax render="@form" execute="@form"/>
+                    </h:commandButton>
+
+                    <h:commandButton value="Save Changes" action="#{tasks.saveAction(o)}"  rendered ="#{o.editable}">
+                        <f:ajax render="@form" execute="@form"/>
+                    </h:commandButton>
+
+                    <h:commandButton value="Delete" action="#{tasks.deleteAction(o)}"  rendered ="#{not o.editable}">
+                        <f:ajax render="@form" execute="@form"/>
+                    </h:commandButton>
+
+                </h:column>
+            </h:dataTable>   
+
+            <h2>Add task</h2>
+            <table>
+                <tr>
+                    <td>Completed :</td>
+                    <td><h:selectBooleanCheckbox value="#{tasks.completed}"/></td>
+                </tr>
+                <tr>
+                    <td>Name :</td>
+                    <td><h:inputText size="20" value="#{tasks.name}" /></td>
+                </tr>
+            </table>
+
+            <h:commandButton value="Add" action="#{tasks.addAction()}">
+                <f:ajax render="@form" execute="@form"/>
+            </h:commandButton>
+
+
+        </h:form>
+    </h:body>
+</html>
+
