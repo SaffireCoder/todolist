@@ -30,9 +30,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     public void setTasksList(List<Task> tasksList) {
         this.tasksList = tasksList;
-    }
-    
- 
+    } 
 
     public TaskRepositoryImpl() {
     }
@@ -45,7 +43,6 @@ public class TaskRepositoryImpl implements TaskRepository {
         task.setName("Task 1");
         task.setEditable(false);
         tasksList.add(task);
-
     }
 
     @Override
@@ -59,19 +56,7 @@ public class TaskRepositoryImpl implements TaskRepository {
     public void delete(Task tsk) {
         tasksList.remove(tsk);
     }
-    
-    @Override
-    public void update(Task tsk) {      
-        for (Task task : tasksList){            
-            if (task.getId() == tsk.getId()){
-                task.setName(tsk.getName());
-                task.setCompleted(tsk.isCompleted());
-            }      
-        }
-    }
 
-   
-    
 }
 
 

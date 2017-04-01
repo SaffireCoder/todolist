@@ -1,8 +1,8 @@
 package pl.webtube.todolist.beans;
 
-import java.util.List;
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.webtube.todolist.model.Task;
@@ -10,7 +10,7 @@ import pl.webtube.todolist.repositories.TaskRepositoryImpl;
 
 
 @Named("tasks")
-@RequestScoped
+@ApplicationScoped
 public class TaskBean {
 
     
@@ -53,7 +53,6 @@ public class TaskBean {
 
     public String saveAction(Task task) {
         task.setEditable(false);
-        taskRepository.update(task);
         return null;
 
     }
@@ -65,7 +64,6 @@ public class TaskBean {
     }
     
     public String addAction() {
-
         Task task = new Task(name,completed,false);
         taskRepository.create(task);
         

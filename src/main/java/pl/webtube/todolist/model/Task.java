@@ -5,8 +5,6 @@ public class Task {
     private boolean completed;
     private boolean editable;
     private int id;
-
-   
    
     public Task() {
     }
@@ -57,6 +55,41 @@ public class Task {
         this.completed = completed;
         this.editable = editable;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Task other = (Task) obj;
+        if (this.completed != other.completed) {
+            return false;
+        }
+        if (this.editable != other.editable) {
+            return false;
+        }
+        if (this.id != other.id) {
+            return false;
+        }
+        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     
 
