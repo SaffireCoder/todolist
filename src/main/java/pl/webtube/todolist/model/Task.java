@@ -4,7 +4,13 @@ public class Task {
     private String name;
     private boolean completed;
     private boolean editable;
+    private int id;
 
+   
+   
+    public Task() {
+    }
+    
     public boolean isEditable() {
         return editable;
     }
@@ -12,9 +18,15 @@ public class Task {
     public void setEditable(boolean editable) {
         this.editable = editable;
     }
-   
-    public Task() {
+
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     public String getName() {
         return name;
@@ -33,11 +45,22 @@ public class Task {
         this.completed = completed;
     }  
 
+    public Task(String name, boolean completed, boolean editable, int id) {
+        this.name = name;
+        this.completed = completed;
+        this.editable = editable;
+        this.id = id;
+    }
+
     public Task(String name, boolean completed, boolean editable) {
         this.name = name;
         this.completed = completed;
         this.editable = editable;
     }
+    
+    
+
+    
     
     
 }

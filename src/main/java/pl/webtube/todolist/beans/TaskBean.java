@@ -13,7 +13,6 @@ import pl.webtube.todolist.repositories.TaskRepositoryImpl;
 @RequestScoped
 public class TaskBean {
 
-    private List<Task> tasksList;
     
     private boolean completed;
     private String name;
@@ -21,13 +20,7 @@ public class TaskBean {
     @Inject
     TaskRepositoryImpl taskRepository;
 
-    public List<Task> getTasksList() {
-        return tasksList;
-    }
 
-    public void setTasksList(List<Task> tasksList) {
-        this.tasksList = tasksList;
-    }
 
     public boolean isCompleted() {
         return completed;
@@ -47,7 +40,6 @@ public class TaskBean {
 
     @PostConstruct
     public void init() {
-        setTasksList(taskRepository.getTasksList());
     }
 
     public TaskBean() {
@@ -61,13 +53,13 @@ public class TaskBean {
 
     public String saveAction(Task task) {
         task.setEditable(false);
-        
+        taskRepository.update(task);
         return null;
 
     }
     
-    public String deleteAction(Task task){
-        tasksList.remove(task);
+    public String deleteAction(Task task){      
+         taskRepository.delete(task);
         
         return null;
     }
@@ -75,12 +67,12 @@ public class TaskBean {
     public String addAction() {
 
         Task task = new Task(name,completed,false);
-        tasksList.add(task);
+        taskRepository.create(task);
         
         name = "";
         completed = false;
         
-        return "index";
+        return null;
                 
     }
 
