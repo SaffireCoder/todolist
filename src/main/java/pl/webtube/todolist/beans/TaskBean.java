@@ -6,7 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.webtube.todolist.model.Task;
-import pl.webtube.todolist.repositories.TaskRepositoryImpl;
+import pl.webtube.todolist.repositories.TaskRepository;
 
 
 @Named("tasks")
@@ -18,7 +18,7 @@ public class TaskBean {
     private String name;
 
     @Inject
-    TaskRepositoryImpl taskRepository;
+    TaskRepository taskRepository;
 
 
 
