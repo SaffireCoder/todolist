@@ -21,7 +21,6 @@ public class TaskBean {
     TaskRepository taskRepository;
 
 
-
     public boolean isCompleted() {
         return completed;
     }
